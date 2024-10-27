@@ -1,4 +1,3 @@
-// src/components/Perguntas.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -8,10 +7,12 @@ const Perguntas = () => {
   const [feedback, setFeedback] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const apiUrl = process.env.REACT_APP_API_URL || '';
+
   useEffect(() => {
     const fetchPerguntas = async () => {
       try {
-        const response = await axios.get('/api/perguntas');
+        const response = await axios.get(`${apiUrl}/api/perguntas`);
         setPerguntas(response.data);
         setLoading(false);
       } catch (error) {
